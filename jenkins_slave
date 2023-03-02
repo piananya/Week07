@@ -1,1 +1,16 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'NAME', defaultValue: 'Default', description: 'Enter your name')
+        string(name: 'Ages', defaultValue: '0', description: 'Enter your age')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Hello from Slave ${params.NAME} of ${params.Ages}"
+                sh "python myscript.py ${params.NAME} --age ${params.Ages}"
 
+            }
+        }
+    }
+}
